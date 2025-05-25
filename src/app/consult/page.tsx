@@ -19,8 +19,12 @@ const DEFAULT_QUESTION = {
 
 export default function ConsultPage() {
   const router = useRouter()
-  const { currentQuestionIndex, answers, setAnswer, resetConsultation, totalQuestions } = useStore()
-  const [questions, setQuestions] = useState<any[]>([])
+  const { currentQuestionIndex, setAnswer, resetConsultation, totalQuestions } = useStore()
+  const [questions, setQuestions] = useState<Array<{
+    id: string;
+    text: string;
+    factKey: string;
+  }>>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
