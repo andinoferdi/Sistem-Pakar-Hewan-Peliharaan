@@ -1,24 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pet Finder AI 🐾
 
-## Getting Started
+Sistem Pakar Cerdas untuk Menemukan Hewan Peliharaan Ideal menggunakan metode Forward Chaining.
 
-First, run the development server:
+## 🌟 Fitur Utama
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **AI Powered**: Menggunakan teknologi sistem pakar canggih dengan metode forward chaining
+- **Akurasi Tinggi**: Memberikan rekomendasi yang dipersonalisasi berdasarkan preferensi pengguna
+- **Proses Cepat**: Hanya membutuhkan beberapa menit untuk mendapatkan rekomendasi
+- **User Interface Modern**: Tampilan yang menarik dan responsif dengan animasi smooth
+- **5+ Jenis Hewan**: Berbagai pilihan hewan peliharaan yang dapat direkomendasikan
+- **16 Pertanyaan Cerdas**: Serangkaian pertanyaan yang dirancang khusus untuk menentukan pet ideal
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Teknologi yang Digunakan
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js 14](https://nextjs.org) - Framework React modern untuk produksi
+- [Tailwind CSS](https://tailwindcss.com) - Framework CSS untuk styling
+- [TypeScript](https://www.typescriptlang.org) - Typed JavaScript untuk pengembangan yang lebih aman
+- [Framer Motion](https://www.framer.com/motion) - Library untuk animasi
+- [Lucide Icons](https://lucide.dev) - Library icon modern
+- [Shadcn/ui](https://ui.shadcn.com) - Komponen UI yang dapat digunakan kembali
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Cara Menjalankan Proyek
+
+1. Clone repository ini
+2. Install dependencies:
+   ```bash
+   npm install
+   # atau
+   yarn install
+   # atau
+   pnpm install
+   ```
+
+3. Jalankan server development:
+   ```bash
+   npm run dev
+   # atau
+   yarn dev
+   # atau
+   pnpm dev
+   ```
+
+4. Buka [http://localhost:3000](http://localhost:3000) di browser Anda
+
+## 📱 Fitur Responsif
+
+Aplikasi ini dirancang untuk bekerja dengan baik di berbagai ukuran layar:
+- Desktop
+- Tablet
+- Mobile
+
+## 🤝 Kontribusi
+
+Kontribusi dan saran selalu diterima. Silakan buat issue atau pull request untuk perbaikan atau peningkatan.
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
 
 ## Learn More
 
