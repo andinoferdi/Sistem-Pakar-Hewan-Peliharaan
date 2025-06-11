@@ -32,15 +32,31 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    height: 100%;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+  
   body {
     @apply bg-background text-foreground;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%);
     min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
     font-family: var(--font-poppins);
     font-feature-settings: "liga" 1, "kern" 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Fix for mobile viewport issues */
+  #__next {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 

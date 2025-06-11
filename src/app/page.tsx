@@ -131,12 +131,8 @@ export default function Home() {
             className="flex justify-center gap-6 sm:gap-8 lg:gap-12 mt-6 sm:mt-8 text-gray-300"
           >
             <div className="text-center">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight">5+</div>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight">5</div>
               <div className="text-xs sm:text-sm font-medium">Jenis Hewan</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight">16</div>
-              <div className="text-xs sm:text-sm font-medium">Pertanyaan Cerdas</div>
             </div>
             <div className="text-center">
               <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight">99%</div>

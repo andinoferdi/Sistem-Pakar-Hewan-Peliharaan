@@ -64,9 +64,10 @@ export default function ConsultPage() {
   if (isLoading) {
     return (
       <div
-        className="flex min-h-screen items-center justify-center"
+        className="flex min-h-[100dvh] min-h-screen items-center justify-center"
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
+          minHeight: '100dvh', // Dynamic viewport height for mobile
         }}
       >
         <motion.div
@@ -105,19 +106,20 @@ export default function ConsultPage() {
 
   return (
     <main
-      className="min-h-screen relative overflow-hidden"
+      className="min-h-[100dvh] min-h-screen relative overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
+        minHeight: '100dvh', // Dynamic viewport height for mobile
       }}
     >
       <ParticleBackground />
 
-      <div className="relative z-10 flex min-h-screen flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6">
+      <div className="relative z-10 flex min-h-[100dvh] min-h-screen flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between mb-4 sm:mb-6"
+          className="flex items-center justify-between mb-4 sm:mb-6 flex-shrink-0"
         >
           <Link href="/">
             <Button
@@ -142,7 +144,7 @@ export default function ConsultPage() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex-1 flex items-center justify-center py-2 sm:py-4">
+        <div className="flex-1 flex items-center justify-center py-2 sm:py-4 min-h-0">
           <div className="max-w-4xl w-full">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
               <div className="bg-white/10 backdrop-blur-xl rounded-full px-4 py-2 mb-6 mx-auto w-fit">
