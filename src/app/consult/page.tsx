@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { QuestionCard } from "@/components/question-card"
-import { StepIndicator } from "@/components/step-indicator"
 import { useStore } from "@/lib/store"
 import { getAllQuestions } from "@/data/questions"
 import Link from "next/link"
@@ -20,7 +19,7 @@ const DEFAULT_QUESTION = {
 
 export default function ConsultPage() {
   const router = useRouter()
-  const { currentQuestionIndex, setAnswer, goToPreviousQuestion, resetConsultation, totalQuestions } =
+  const { currentQuestionIndex, setAnswer, goToPreviousQuestion, resetConsultation, totalQuestions, answers, questionHistory } =
     useStore()
   const [questions, setQuestions] = useState<
     Array<{
@@ -38,12 +37,16 @@ export default function ConsultPage() {
     setIsLoading(false)
   }, [resetConsultation])
 
-  const handleAnswer = (answer: boolean) => {
-    setAnswer(currentQuestionIndex, answer)
-
-    if (currentQuestionIndex === totalQuestions - 1) {
+  // Handle navigation to result page in useEffect
+  useEffect(() => {
+    if (!isLoading && currentQuestionIndex >= totalQuestions) {
       router.push("/result")
     }
+  }, [currentQuestionIndex, totalQuestions, router, isLoading])
+
+  const handleAnswer = (answer: boolean) => {
+    setAnswer(currentQuestionIndex, answer)
+    // Navigation will be handled by useEffect above
   }
 
   const handlePrevious = () => {
@@ -67,10 +70,32 @@ export default function ConsultPage() {
     )
   }
 
+  // Don't render if we've finished all questions (useEffect will handle navigation)
+  if (currentQuestionIndex >= totalQuestions) {
+    return null
+  }
+
   const currentQuestion =
     questions.length > 0 && currentQuestionIndex < questions.length ? questions[currentQuestionIndex] : DEFAULT_QUESTION
 
-  const canGoBack = currentQuestionIndex > 0
+  const canGoBack = questionHistory.length > 1
+
+  // Calculate progress based on answered questions with accurate percentage  
+  // 1 question = 12.5% (1/8), 2 questions = 25% (2/8), etc.
+  // IMPORTANT: Filter out undefined, null, and deleted answers properly
+  const answeredQuestions = Object.values(answers)
+    .filter(value => value !== undefined && value !== null)
+    .length
+  
+  const accurateProgress = answeredQuestions === 0 ? 0 : (answeredQuestions / 8) * 100
+  
+  // Debug logging (remove in production)
+  console.log('Current answers object:', answers)
+  console.log('Answered questions count:', answeredQuestions)
+  console.log('Accurate progress:', accurateProgress)
+  
+  // Question number should be based on current position + 1, not answered questions
+  const currentQuestionNumber = currentQuestionIndex + 1
 
   return (
     <main
@@ -80,6 +105,7 @@ export default function ConsultPage() {
       }}
     >
       <ParticleBackground />
+
       <div className="relative z-10 flex min-h-screen flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6">
         {/* Header */}
         <motion.div
@@ -101,8 +127,8 @@ export default function ConsultPage() {
 
           <div className="flex items-center gap-1 sm:gap-2 text-gray-300 text-xs sm:text-sm">
             <Brain className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="font-medium hidden xs:inline">AI Analysis</span>
-            <span className="font-medium xs:hidden">AI</span>
+            <span className="font-medium hidden xs:inline">Smart AI Analysis</span>
+            <span className="font-medium xs:hidden">Smart AI</span>
             <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}>
               <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
             </motion.div>
@@ -113,7 +139,20 @@ export default function ConsultPage() {
         <div className="flex-1 flex items-center justify-center py-2 sm:py-4">
           <div className="max-w-4xl w-full">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <StepIndicator currentStep={currentQuestionIndex + 1} totalSteps={totalQuestions} />
+              <div className="bg-white/10 backdrop-blur-xl rounded-full px-4 py-2 mb-6 mx-auto w-fit">
+                <div className="flex items-center gap-2 text-white text-sm font-medium">
+                  <Brain className="w-4 h-4 text-blue-400" />
+                  <span>Progres: {Math.round(accurateProgress)}%</span>
+                  <div className="w-20 h-1 bg-white/20 rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-blue-400 to-purple-500"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${accurateProgress}%` }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
@@ -129,8 +168,7 @@ export default function ConsultPage() {
                 onAnswerNo={() => handleAnswer(false)}
                 onPrevious={handlePrevious}
                 canGoBack={canGoBack}
-                questionNumber={currentQuestionIndex + 1}
-                totalQuestions={totalQuestions}
+                questionNumber={currentQuestionNumber}
               />
             </motion.div>
           </div>

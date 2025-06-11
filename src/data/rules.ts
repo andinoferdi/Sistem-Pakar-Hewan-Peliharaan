@@ -20,9 +20,9 @@ export const rules: Rule[] = [
   },
   {
     id: "Z3",
-    condition: (facts) => facts.hasFeathers === true,
+    condition: (facts) => facts.hasWings === true,
     conclusion: "isBird",
-    description: "Jika hewan memiliki bulu (feathers), maka hewan tersebut adalah burung",
+    description: "Jika hewan memiliki sayap, maka hewan tersebut adalah burung",
   },
   {
     id: "Z4",

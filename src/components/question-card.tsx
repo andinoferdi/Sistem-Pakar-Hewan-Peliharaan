@@ -16,7 +16,6 @@ interface QuestionCardProps {
   onPrevious?: () => void
   canGoBack?: boolean
   questionNumber?: number
-  totalQuestions?: number
 }
 
 export function QuestionCard({
@@ -27,7 +26,6 @@ export function QuestionCard({
   onPrevious,
   canGoBack = false,
   questionNumber = 1,
-  totalQuestions = 16,
 }: QuestionCardProps) {
   const [showExplanation, setShowExplanation] = useState(false)
   const questionText = question || "Pertanyaan tidak tersedia"
@@ -62,9 +60,6 @@ export function QuestionCard({
                   <h2 className="text-sm sm:text-base lg:text-lg font-bold text-white tracking-tight">
                     Pertanyaan {questionNumber}
                   </h2>
-                  <div className="text-gray-300 text-xs font-medium">
-                    {questionNumber} dari {totalQuestions} pertanyaan
-                  </div>
                 </div>
               </div>
 

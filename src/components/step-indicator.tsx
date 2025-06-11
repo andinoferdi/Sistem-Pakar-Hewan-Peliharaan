@@ -4,13 +4,13 @@ import { motion } from "framer-motion"
 import { CheckCircle, Circle } from "lucide-react"
 
 interface StepIndicatorProps {
-  currentStep: number
-  totalSteps: number
+  answeredQuestions: number // Number of questions actually answered
 }
 
-export function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
-  const completedSteps = Math.max(0, currentStep - 1)
-  const progress = Math.min((completedSteps / totalSteps) * 100, 100)
+export function StepIndicator({ answeredQuestions = 0 }: StepIndicatorProps) {
+  // Calculate progress based on answered questions
+  // 1 question = 12.5% (1/8), 2 questions = 25% (2/8), etc.
+  const progress = answeredQuestions === 0 ? 0 : Math.min((answeredQuestions / 8) * 100, 100)
 
   return (
     <div className="w-full max-w-2xl mx-auto px-2 sm:px-0">
@@ -18,11 +18,12 @@ export function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
       <div className="flex justify-between items-center mb-3 sm:mb-4">
         <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-2">
           <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-white font-bold text-xs sm:text-sm tracking-tight">{currentStep}</span>
+            <span className="text-white font-bold text-xs sm:text-sm tracking-tight">{answeredQuestions}</span>
           </div>
           <div>
-            <div className="text-white font-bold text-sm sm:text-lg tracking-tight">Langkah {currentStep}</div>
-            <div className="text-gray-300 text-xs font-medium">dari {totalSteps} pertanyaan</div>
+            <div className="text-white font-bold text-sm sm:text-lg tracking-tight">
+              {answeredQuestions === 0 ? "Mulai Konsultasi" : `${answeredQuestions} Terjawab`}
+            </div>
           </div>
         </motion.div>
 
@@ -49,13 +50,12 @@ export function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
           </motion.div>
         </div>
 
-        {/* Step indicators */}
+        {/* Step indicators - show progress marks */}
         <div className="flex justify-between mt-2 sm:mt-3">
-          {Array.from({ length: Math.min(totalSteps, window.innerWidth < 640 ? 4 : 6) }, (_, i) => {
-            const maxSteps = window.innerWidth < 640 ? 4 : 6
-            const stepNumber = Math.floor((i * (totalSteps - 1)) / (maxSteps - 1)) + 1
-            const isCompleted = currentStep > stepNumber
-            const isCurrent = currentStep === stepNumber
+          {Array.from({ length: 8 }, (_, i) => {
+            const stepNumber = i + 1
+            const isCompleted = answeredQuestions >= stepNumber
+            const isCurrent = answeredQuestions + 1 === stepNumber
 
             return (
               <motion.div

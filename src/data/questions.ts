@@ -20,8 +20,8 @@ export const questions: Question[] = [
   // Bird questions
   {
     id: "q3",
-    text: "Apakah hewan ini memiliki bulu (feathers)?",
-    factKey: "hasFeathers",
+    text: "Apakah hewan ini memiliki sayap?",
+    factKey: "hasWings",
   },
   {
     id: "q4",
@@ -125,7 +125,7 @@ export function getQuestionsForAnimal(animalType: string): Question[] {
 
       case "bird":
       case "burung":
-        return questions.filter((q) => ["hasFeathers", "sings", "livesInCage"].includes(q.factKey))
+        return questions.filter((q) => ["hasWings", "sings", "livesInCage"].includes(q.factKey))
 
       case "rabbit":
       case "kelinci":

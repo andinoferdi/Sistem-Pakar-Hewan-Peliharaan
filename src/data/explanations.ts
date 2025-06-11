@@ -18,10 +18,10 @@ export const questionExplanations: QuestionExplanation[] = [
     funFact: "Susu mamalia mengandung antibodi yang membantu melindungi bayi dari penyakit!",
   },
   {
-    factKey: "hasFeathers",
+    factKey: "hasWings",
     explanation:
-      "Bulu (feathers) adalah karakteristik unik burung. Tidak ada hewan lain yang memiliki bulu sejati, sehingga ini menjadi penanda pasti untuk klasifikasi burung.",
-    funFact: "Bulu burung tidak hanya untuk terbang, tapi juga untuk mengatur suhu tubuh dan menarik pasangan!",
+      "Sayap adalah karakteristik unik burung. Tidak ada hewan peliharaan lain yang memiliki sayap sejati, sehingga ini menjadi penanda pasti untuk klasifikasi burung.",
+    funFact: "Sayap burung tidak hanya untuk terbang, tapi juga untuk mengatur suhu tubuh dan menarik pasangan!",
   },
   {
     factKey: "sings",

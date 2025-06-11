@@ -24,7 +24,7 @@ export const animals: AnimalDetails[] = [
     id: "bird",
     name: "Burung",
     description:
-      "Burung peliharaan adalah burung yang berkicau dan biasanya hidup di dalam sangkar. Mereka memiliki bulu (feathers) dan sering dijadikan hewan peliharaan karena suaranya yang merdu.",
+      "Burung peliharaan adalah burung yang berkicau dan biasanya hidup di dalam sangkar. Mereka memiliki sayap dan sering dijadikan hewan peliharaan karena suaranya yang merdu.",
     conclusionFact: "isPetBird",
   },
   {
