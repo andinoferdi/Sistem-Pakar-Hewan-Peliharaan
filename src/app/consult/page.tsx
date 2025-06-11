@@ -19,8 +19,16 @@ const DEFAULT_QUESTION = {
 
 export default function ConsultPage() {
   const router = useRouter()
-  const { currentQuestionIndex, setAnswer, goToPreviousQuestion, resetConsultation, totalQuestions, answers, questionHistory } =
-    useStore()
+  const {
+    currentQuestionIndex,
+    setAnswer,
+    goToPreviousQuestion,
+    resetConsultation,
+    totalQuestions,
+    answers,
+    questionHistory,
+    getProgressInfo,
+  } = useStore()
   const [questions, setQuestions] = useState<
     Array<{
       id: string
@@ -80,22 +88,22 @@ export default function ConsultPage() {
 
   const canGoBack = questionHistory.length > 1
 
-  // Calculate progress based on answered questions with accurate percentage  
-  // 1 question = 12.5% (1/8), 2 questions = 25% (2/8), etc.
-  // IMPORTANT: Filter out undefined, null, and deleted answers properly
-  const answeredQuestions = Object.values(answers)
-    .filter(value => value !== undefined && value !== null)
-    .length
-  
-  const accurateProgress = answeredQuestions === 0 ? 0 : (answeredQuestions / 8) * 100
-  
-  // Debug logging (remove in production)
-  console.log('Current answers object:', answers)
-  console.log('Answered questions count:', answeredQuestions)
-  console.log('Accurate progress:', accurateProgress)
-  
-  // Question number should be based on current position + 1, not answered questions
-  const currentQuestionNumber = currentQuestionIndex + 1
+  // Get accurate progress information from the store
+  const progressInfo = getProgressInfo()
+  const accurateProgress = progressInfo.percentage
+  const questionsAnswered = progressInfo.answeredCount
+  const estimatedTotal = progressInfo.estimatedTotal
+
+  // Debug logging
+  console.log("=== Progress Debug ===")
+  console.log("Current question index:", currentQuestionIndex)
+  console.log("Question history:", questionHistory)
+  console.log("Answers array:", answers)
+  console.log("Progress Info:", progressInfo)
+  console.log("=====================")
+
+  // Question number should be based on position in question history
+  const currentQuestionNumber = questionHistory.length
 
   return (
     <main
@@ -142,13 +150,14 @@ export default function ConsultPage() {
               <div className="bg-white/10 backdrop-blur-xl rounded-full px-4 py-2 mb-6 mx-auto w-fit">
                 <div className="flex items-center gap-2 text-white text-sm font-medium">
                   <Brain className="w-4 h-4 text-blue-400" />
-                  <span>Progres: {Math.round(accurateProgress)}%</span>
+                  <span>Progres: {accurateProgress}%</span>
+
                   <div className="w-20 h-1 bg-white/20 rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       className="h-full bg-gradient-to-r from-blue-400 to-purple-500"
-                      initial={{ width: 0 }}
+                      initial={{ width: `${accurateProgress}%` }}
                       animate={{ width: `${accurateProgress}%` }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
                     />
                   </div>
                 </div>
@@ -169,6 +178,7 @@ export default function ConsultPage() {
                 onPrevious={handlePrevious}
                 canGoBack={canGoBack}
                 questionNumber={currentQuestionNumber}
+                totalEstimated={estimatedTotal}
               />
             </motion.div>
           </div>
