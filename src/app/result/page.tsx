@@ -36,12 +36,9 @@ export default function ResultPage() {
   if (!result) {
     return (
       <div
-        className="flex items-center justify-center w-full fixed inset-0"
+        className="flex min-h-screen items-center justify-center"
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
-          backgroundAttachment: "fixed",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
         }}
       >
         <motion.div
@@ -55,16 +52,13 @@ export default function ResultPage() {
 
   return (
     <main
-      className="relative overflow-hidden w-full fixed inset-0"
+      className="min-h-screen relative overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
-        backgroundAttachment: "fixed",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
       }}
     >
       <ParticleBackground />
-      <div className="relative z-10 flex flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6 w-full h-full overflow-y-auto">
+      <div className="relative z-10 flex min-h-screen flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
