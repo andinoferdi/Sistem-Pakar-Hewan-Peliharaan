@@ -16,7 +16,6 @@ interface QuestionCardProps {
   onPrevious?: () => void
   canGoBack?: boolean
   questionNumber?: number
-  totalEstimated?: number
 }
 
 export function QuestionCard({
@@ -27,7 +26,6 @@ export function QuestionCard({
   onPrevious,
   canGoBack = false,
   questionNumber = 1,
-  totalEstimated = 8,
 }: QuestionCardProps) {
   const [showExplanation, setShowExplanation] = useState(false)
   const questionText = question || "Pertanyaan tidak tersedia"

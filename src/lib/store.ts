@@ -101,14 +101,14 @@ export const useStore = create<ConsultationState>((set, get) => ({
       // This ensures progress resets properly when going back
       const newAnswers = [...state.answers]
 
-      // Clear answers for all questions after the previous index
-      for (let i = previousIndex + 1; i < newAnswers.length; i++) {
-        newAnswers[i] = undefined
-      }
+      // Clear answers for all questions after the previous index by removing them
+      newAnswers.splice(previousIndex + 1)
 
       // IMPORTANT: Also clear the answer for the previous question itself
       // This ensures that when we go back, we haven't "answered" that question yet
-      newAnswers[previousIndex] = undefined
+      if (newAnswers.length > previousIndex) {
+        newAnswers.splice(previousIndex)
+      }
 
       // Clear skipped questions that are no longer relevant
       const newSkipped = state.skippedQuestions.filter((q) => q <= previousIndex)

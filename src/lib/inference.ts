@@ -67,7 +67,7 @@ export function runInference(answers: boolean[]): InferenceResult {
     else if (derivedFacts.isOrnamentalFish) result = "isOrnamentalFish"
 
     // Find next relevant question using forward chaining logic
-    const nextRelevantQuestion = findNextRelevantQuestion(answers, derivedFacts)
+    const nextRelevantQuestion = findNextRelevantQuestion(answers)
 
     // Format the applied rules for display
     const formattedRules = appliedRules.map((ruleId) => {
@@ -93,7 +93,7 @@ export function runInference(answers: boolean[]): InferenceResult {
 }
 
 // Forward chaining approach to determine next question following decision tree
-function findNextRelevantQuestion(answers: boolean[], derivedFacts: Record<string, boolean>): number | null {
+function findNextRelevantQuestion(answers: boolean[]): number | null {
   try {
     // Follow the exact decision tree logic from the diagram
 

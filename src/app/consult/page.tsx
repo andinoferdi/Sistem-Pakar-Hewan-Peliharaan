@@ -91,8 +91,6 @@ export default function ConsultPage() {
   // Get accurate progress information from the store
   const progressInfo = getProgressInfo()
   const accurateProgress = progressInfo.percentage
-  const questionsAnswered = progressInfo.answeredCount
-  const estimatedTotal = progressInfo.estimatedTotal
 
   // Debug logging
   console.log("=== Progress Debug ===")
@@ -178,7 +176,6 @@ export default function ConsultPage() {
                 onPrevious={handlePrevious}
                 canGoBack={canGoBack}
                 questionNumber={currentQuestionNumber}
-                totalEstimated={estimatedTotal}
               />
             </motion.div>
           </div>
