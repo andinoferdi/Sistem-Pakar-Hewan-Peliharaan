@@ -64,10 +64,9 @@ export default function ConsultPage() {
   if (isLoading) {
     return (
       <div
-        className="flex min-h-[100dvh] min-h-screen items-center justify-center"
+        className="flex items-center justify-center min-h-screen"
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
-          minHeight: '100dvh', // Dynamic viewport height for mobile
         }}
       >
         <motion.div
@@ -106,15 +105,14 @@ export default function ConsultPage() {
 
   return (
     <main
-      className="min-h-[100dvh] min-h-screen relative overflow-hidden"
+      className="relative overflow-hidden min-h-screen"
       style={{
         background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
-        minHeight: '100dvh', // Dynamic viewport height for mobile
       }}
     >
       <ParticleBackground />
 
-      <div className="relative z-10 flex min-h-[100dvh] min-h-screen flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6">
+      <div className="relative z-10 flex flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6 min-h-screen">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}

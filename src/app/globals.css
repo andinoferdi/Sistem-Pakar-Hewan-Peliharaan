@@ -34,15 +34,22 @@
   }
   
   html {
-    height: 100%;
-    height: 100dvh; /* Dynamic viewport height for mobile */
+    /* Mobile viewport fixes with fallbacks */
+    height: 100vh;
+    height: 100dvh;
+    height: 100svh;
   }
   
   body {
     @apply bg-background text-foreground;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Height with fallbacks */
     min-height: 100vh;
-    min-height: 100dvh; /* Dynamic viewport height for mobile */
+    min-height: 100dvh;
+    min-height: 100svh;
     font-family: var(--font-poppins);
     font-feature-settings: "liga" 1, "kern" 1;
     text-rendering: optimizeLegibility;
@@ -50,13 +57,24 @@
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
   }
   
   /* Fix for mobile viewport issues */
   #__next {
     min-height: 100vh;
     min-height: 100dvh;
+    min-height: 100svh;
+  }
+  
+  /* iOS Safari specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    html,
+    body,
+    #__next {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
   }
 }
 

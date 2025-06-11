@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 export function ParticleBackground() {
   const [isClient, setIsClient] = useState(false)
-  
+
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -23,7 +23,7 @@ export function ParticleBackground() {
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ height: "100%" }}>
       {/* Floating particles */}
       {[...Array(15)].map((_, i) => {
         const ParticleIcon = particles[i % particles.length].icon
@@ -43,7 +43,7 @@ export function ParticleBackground() {
             }}
             transition={{
               duration: 8,
-              repeat: Infinity,
+              repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
           >
@@ -67,8 +67,8 @@ export function ParticleBackground() {
                   "rgba(34, 197, 94, 0.15)",
                 ][i % 4]
               }, transparent)`,
-              width: 40 + (i * 5),
-              height: 40 + (i * 5),
+              width: 40 + i * 5,
+              height: 40 + i * 5,
             }}
             initial={{ opacity: 0.3 }}
             animate={{
@@ -78,7 +78,7 @@ export function ParticleBackground() {
             }}
             transition={{
               duration: 12,
-              repeat: Infinity,
+              repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
           />
@@ -101,7 +101,7 @@ export function ParticleBackground() {
             }}
             transition={{
               duration: 3,
-              repeat: Infinity,
+              repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
               delay: i * 0.5,
             }}
