@@ -9,7 +9,7 @@ import { ParticleBackground } from "@/components/particle-background"
 export default function Home() {
   return (
     <main
-      className="relative overflow-hidden min-h-screen"
+      className="relative overflow-hidden w-full fixed inset-0"
       style={{
         background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
         backgroundAttachment: "fixed",
@@ -18,7 +18,7 @@ export default function Home() {
       }}
     >
       <ParticleBackground />
-      <div className="relative z-10 flex flex-col items-center justify-center py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-6 min-h-screen">
+      <div className="relative z-10 flex flex-col items-center justify-center py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-6 w-full h-full overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

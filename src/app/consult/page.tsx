@@ -64,7 +64,7 @@ export default function ConsultPage() {
   if (isLoading) {
     return (
       <div
-        className="flex items-center justify-center min-h-screen"
+        className="flex items-center justify-center w-full fixed inset-0"
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
         }}
@@ -105,14 +105,14 @@ export default function ConsultPage() {
 
   return (
     <main
-      className="relative overflow-hidden min-h-screen"
+      className="relative overflow-hidden w-full fixed inset-0"
       style={{
         background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b2d8e 100%)",
       }}
     >
       <ParticleBackground />
 
-      <div className="relative z-10 flex flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6 min-h-screen">
+      <div className="relative z-10 flex flex-col py-3 sm:py-4 lg:py-6 px-3 sm:px-4 lg:px-6 w-full h-full overflow-y-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
